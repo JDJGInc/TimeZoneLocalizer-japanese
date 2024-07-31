@@ -24,7 +24,7 @@ class TimeZoneLocalizer(commands.Bot):
 intents = discord.Intents(guilds=True, messages=True, message_content=True)
 
 bot = TimeZoneLocalizer(
-    command_prefix=commands.when_mentioned_or("t$"),
+    command_prefix=commands.when_mentioned_or("t."),
     intents=intents,
     chunk_guilds_at_startup=False,
     strip_after_prefix=True,
