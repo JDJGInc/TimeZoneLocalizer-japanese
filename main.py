@@ -3,7 +3,7 @@ import os
 import traceback
 
 import discord
-from discord import commands
+from discord.ext import commands
 from dotenv import load_dotenv
 
 from cogs import EXTENSIONS
