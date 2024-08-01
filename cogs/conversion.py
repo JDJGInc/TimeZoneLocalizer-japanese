@@ -66,7 +66,7 @@ class ConversionUtil(commands.Cog):
 
         timezones = self.available_timezones
         localized_timezones = await asyncio.to_thread(list_timezones, interaction.locale, timezones)
-        localized_timezones = (localized_timezones.items())
+        localized_timezones = sorted(localized_timezones.items())
 
         all_choices = [Choice(name=timezone, value=localized_timezones[timezone]) for timezone in localized_timezones]
 
