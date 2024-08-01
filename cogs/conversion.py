@@ -14,7 +14,7 @@ from utils.extra import list_timezones
 
 
 class ConversionUtil(commands.Cog):
-    "Cogs meant for converting useful stuff"
+    "Cog meant for converting useful stuff"
 
     def __init__(self, bot):
         self.bot = bot
