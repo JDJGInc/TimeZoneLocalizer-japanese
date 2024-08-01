@@ -73,6 +73,7 @@ class ConversionUtil(commands.Cog):
 
             except:
                 localized_timezone = timezone
+                traceback.print_exc(e)
 
             embed = discord.Embed(
                 title="Time:",
