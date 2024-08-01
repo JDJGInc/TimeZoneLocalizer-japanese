@@ -17,6 +17,7 @@ def list_timezones(locale: discord.Locale, timezones: list[str]):
             cleaned_locale = discord.Locale.japanese.value
 
     timezones_dictionary = {}
+    original_timezones = {}
     for timezone in timezones:
         try:
             tz = TimeZone.createTimeZone(timezone)
@@ -26,9 +27,9 @@ def list_timezones(locale: discord.Locale, timezones: list[str]):
                 timezone_localized = timezone
 
             timezones_dictionary[timezone_localized] = timezone
-            timezones_dictionary[timezone] = timezone
+            original_timezones[timezone] = timezone
 
         except Exception as e:
             traceback.print_exception(e)
 
-    return timezones_dictionary
+    return timezones_dictionary | original_timezones
