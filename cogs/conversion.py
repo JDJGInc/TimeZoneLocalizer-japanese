@@ -78,7 +78,7 @@ class ConversionUtil(commands.Cog):
                 title="Time:",
                 description=f"12 hour: {am_pm_format}\n24 hour: {twenty_four_format}\n\nYYYY-MM-DD: {first_format} \nYYYY-DD-MM: {second_format}\nDD-MM-YYYY: {third_format}\nMM-DD-YYYY: {fourth_format}",
             )
-            embed.set_footer(text=f"Timezone: {timezone}\nLocalized Timezone:{localized_timezone}")
+            embed.set_footer(text=f"Timezone: {timezone}\nLocalized Timezone: {localized_timezone}")
 
         await interaction.response.send_message(embed=embed)
 
