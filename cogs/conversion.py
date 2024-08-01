@@ -71,7 +71,7 @@ class ConversionUtil(commands.Cog):
                 if timezone_localized.lower().startswith("unknown region"):
                     timezone_localized = timezone
 
-            except:
+            except Exception as e:
                 localized_timezone = timezone
                 traceback.print_exc(e)
 
