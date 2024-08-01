@@ -7,6 +7,7 @@ import discord
 from discord import app_commands
 from discord.app_commands import Choice
 from discord.ext import commands
+from icu import Locale, TimeZone
 
 from utils import fuzzy
 from utils.extra import list_timezones
@@ -52,12 +53,33 @@ class ConversionUtil(commands.Cog):
             fourth_format = now_tz.strftime("%m-%d-%Y")
 
             # possibly do colors depending on time but not sure.
+            try:
+                tz = TimeZone.createTimeZone(timezone)
+
+                match locale:
+                    case discord.Locale.american_english:
+                        cleaned_locale = locale.value.replace("-", "_")
+
+                    case discord.Locale.british_english:
+                    cleaned_locale = locale.value.replace("-", "_")
+
+                    case default:
+                        cleaned_locale = discord.Locale.japanese.value
+
+                locale = Locale(cleaned_locale)
+                timezone_localized = tz.getDisplayName(True, TimeZone.LONG, locale)
+
+                 if timezone_localized.lower().startswith("unknown region"):
+                    timezone_localized = timezone
+
+            except:
+                localized_timezone = timezone
 
             embed = discord.Embed(
                 title="Time:",
                 description=f"12 hour: {am_pm_format}\n24 hour: {twenty_four_format}\n\nYYYY-MM-DD: {first_format} \nYYYY-DD-MM: {second_format}\nDD-MM-YYYY: {third_format}\nMM-DD-YYYY: {fourth_format}",
             )
-            embed.set_footer(text=f"Timezone: {timezone}")
+            embed.set_footer(text=f"Timezone: {timezone}\nLocalized Timezone:{}")
 
         await interaction.response.send_message(embed=embed)
 
