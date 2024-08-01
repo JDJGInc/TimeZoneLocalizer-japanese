@@ -21,12 +21,12 @@ def list_timezones(locale: discord.Locale, timezones: list[str]):
         try:
             tz = TimeZone.createTimeZone(timezone)
             locale = Locale(cleaned_locale)
-            timezones_dictionary[timezone] = timezone
             timezone_localized = tz.getDisplayName(True, TimeZone.LONG, locale)
             if timezone_localized.lower().startswith("unknown region"):
                 timezone_localized = timezone
 
             timezones_dictionary[timezone_localized] = timezone
+            timezones_dictionary[timezone] = timezone
 
         except Exception as e:
             traceback.print_exception(e)
