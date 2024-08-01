@@ -54,6 +54,7 @@ class ConversionUtil(commands.Cog):
 
             # possibly do colors depending on time but not sure.
             try:
+                locale = interaction.locale
                 tz = TimeZone.createTimeZone(timezone)
                 match locale:
                     case discord.Locale.american_english:
