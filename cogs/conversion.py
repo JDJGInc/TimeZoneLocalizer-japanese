@@ -53,6 +53,7 @@ class ConversionUtil(commands.Cog):
             fourth_format = now_tz.strftime("%m-%d-%Y")
 
             # possibly do colors depending on time but not sure.
+            # shrug
             try:
                 locale = interaction.locale
                 tz = TimeZone.createTimeZone(timezone)
