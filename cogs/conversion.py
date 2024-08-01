@@ -67,10 +67,10 @@ class ConversionUtil(commands.Cog):
                         cleaned_locale = discord.Locale.japanese.value
 
                 locale = Locale(cleaned_locale)
-                timezone_localized = tz.getDisplayName(True, TimeZone.LONG, locale)
+                localized_timezone = tz.getDisplayName(True, TimeZone.LONG, locale)
 
-                if timezone_localized.lower().startswith("unknown region"):
-                    timezone_localized = timezone
+                if localized_timezone.lower().startswith("unknown region"):
+                    localized_timezone = timezone
 
             except Exception as e:
                 localized_timezone = timezone
