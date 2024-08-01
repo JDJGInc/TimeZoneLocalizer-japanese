@@ -55,13 +55,12 @@ class ConversionUtil(commands.Cog):
             # possibly do colors depending on time but not sure.
             try:
                 tz = TimeZone.createTimeZone(timezone)
-
                 match locale:
                     case discord.Locale.american_english:
                         cleaned_locale = locale.value.replace("-", "_")
 
                     case discord.Locale.british_english:
-                    cleaned_locale = locale.value.replace("-", "_")
+                        cleaned_locale = locale.value.replace("-", "_")
 
                     case default:
                         cleaned_locale = discord.Locale.japanese.value
@@ -69,7 +68,7 @@ class ConversionUtil(commands.Cog):
                 locale = Locale(cleaned_locale)
                 timezone_localized = tz.getDisplayName(True, TimeZone.LONG, locale)
 
-                 if timezone_localized.lower().startswith("unknown region"):
+                if timezone_localized.lower().startswith("unknown region"):
                     timezone_localized = timezone
 
             except:
