@@ -28,6 +28,7 @@ class ConversionUtil(commands.Cog):
     @app_commands.describe(
         timezone="変換したいタイムゾーンを選択します。",
     )
+    @app_commands.rename(timezone="タイム_ゾーン")
     @app_commands.command(description="メッセージのタイムスタンプを地域の時間に変換するコマンド。", name="コンバート_タイムゾーン")
     async def convert_timezone(self, interaction: discord.Interaction, timezone: typing.Optional[str] = None):
 
