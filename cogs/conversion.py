@@ -14,7 +14,7 @@ from utils.extra import list_timezones
 
 
 class ConversionUtil(commands.Cog):
-    "Cog meant for converting useful stuff"
+    "便利なものを変換するための歯車。"
 
     def __init__(self, bot):
         self.bot = bot
@@ -26,22 +26,22 @@ class ConversionUtil(commands.Cog):
     @app_commands.guild_install()
     @app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
     @app_commands.describe(
-        timezone="Select the timezone you would like to convert to.",
+        timezone="変換したいタイムゾーンを選択します。",
     )
-    @app_commands.command(description="A command to convert the message timestamp to the region's time.")
+    @app_commands.command(description="メッセージのタイムスタンプを地域の時間に変換するコマンド。", name="コンバート タイムゾーン")
     async def convert_timezone(self, interaction: discord.Interaction, timezone: typing.Optional[str] = None):
 
         timezones = self.available_timezones
 
         if not timezone:
             timestamp = discord.utils.format_dt(interaction.created_at)
-            embed = discord.Embed(title="Time:", description=timestamp)
-            embed.set_footer(text="Timezone: Not Specified")
+            embed = discord.Embed(title="時刻:", description=timestamp)
+            embed.set_footer(text="タイムゾーン: 指定なし")
 
         elif not timezone in timezones:
             timestamp = discord.utils.format_dt(interaction.created_at)
-            embed = discord.Embed(title="Time:", description=timestamp)
-            embed.set_footer(text="Timezone: Not Found")
+            embed = discord.Embed(title="時刻:", description=timestamp)
+            embed.set_footer(text="タイムゾーン: 見つかりません")
 
         else:
             now_tz = interaction.created_at.astimezone(zoneinfo.ZoneInfo(timezone))
@@ -78,10 +78,10 @@ class ConversionUtil(commands.Cog):
                 traceback.print_exc(e)
 
             embed = discord.Embed(
-                title="Time:",
-                description=f"12 hour: {am_pm_format}\n24 hour: {twenty_four_format}\n\nYYYY-MM-DD: {first_format} \nYYYY-DD-MM: {second_format}\nDD-MM-YYYY: {third_format}\nMM-DD-YYYY: {fourth_format}",
+                title="時刻:",
+                description=f"12時間表記: {am_pm_format}\n24時間表記: {twenty_four_format}\n\nYYYY-MM-DD: {first_format} \nYYYY-DD-MM: {second_format}\nDD-MM-YYYY: {third_format}\nMM-DD-YYYY: {fourth_format}",
             )
-            embed.set_footer(text=f"Timezone: {timezone}\nLocalized Timezone: {localized_timezone}")
+            embed.set_footer(text=f"タイムゾーン: {timezone}\nローカライズされたタイムゾーン: {localized_timezone}")
 
         await interaction.response.send_message(embed=embed)
 
@@ -103,7 +103,7 @@ class ConversionUtil(commands.Cog):
 
     @convert_timezone.error
     async def convert_timezone_error(self, interaction: discord.Interaction, error):
-        await interaction.response.send_message(f"{error}! Please Send to this to my developer", ephemeral=True)
+        await interaction.response.send_message(f"{error}! 開発者に問い合わせてください。", ephemeral=True)
         print(interaction.command)
         traceback.print_exc()
 
