@@ -107,8 +107,5 @@ class ConversionUtil(commands.Cog):
         print(interaction.command)
         traceback.print_exc()
 
-    # convert economy soon here.
-
-
 async def setup(bot):
     await bot.add_cog(ConversionUtil(bot))
